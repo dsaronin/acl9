@@ -26,6 +26,8 @@ module Acl9
 
         subject_method = opts[:subject_method] || Acl9::config[:default_subject_method]
 
+puts "###### ACL9 ##### subject_method=#{subject_method.to_s} ######"
+
         raise ArgumentError, "Block must be supplied to access_control" unless block
 
         filter = opts[:filter]
@@ -45,6 +47,7 @@ module Acl9
         end
 
         method = opts[:as_method]
+puts "###### ACL9 ##### method=#{method.to_s} ######"
 
         query_method_available = true
         generator = case
@@ -56,6 +59,7 @@ module Acl9
                     else
                       Acl9::Dsl::Generators::FilterLambda.new(subject_method)
                     end
+puts "###### ACL9 ##### generator=#{generator.class.name} ######"
 
         generator.acl_block!(&block)
 
@@ -76,6 +80,7 @@ module Acl9
           end
 
           second_generator = Acl9::Dsl::Generators::BooleanMethod.new(subject_method, query_method)
+puts "###### ACL9 ##### second_generator=#{second_generator.inspect} ######"
           second_generator.acl_block!(&block)
           second_generator.install_on(self, opts)
         end
