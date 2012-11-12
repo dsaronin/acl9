@@ -9,6 +9,7 @@ module Acl9
     module ClassMethods
       def access_control(*args, &block)
 puts "###### ACL9 ##### head of method  ######"
+return true
         opts = args.extract_options!
 
         case args.size
