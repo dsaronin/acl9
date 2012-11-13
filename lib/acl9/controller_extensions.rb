@@ -66,10 +66,10 @@ puts "###### ACL9 ##### method=#{method.to_s} ######"
 
 puts "###### ACL9 ##### generator=#{generator.class.name} ######"
 
-return true
 
         generator.acl_block!(&block)   # shouldn't be commented out
 
+return true
         generator.install_on(self, opts)
 
 puts "###### ACL9 ##### install_on ######"
