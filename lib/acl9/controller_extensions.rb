@@ -8,8 +8,9 @@ module Acl9
 
     module ClassMethods
       def access_control(*args, &block)
+
 puts "###### ACL9 ##### head of method  ######"
-return true
+
         opts = args.extract_options!
 
         case args.size
@@ -49,6 +50,7 @@ puts "###### ACL9 ##### subject_method=#{subject_method.to_s} ######"
         end
 
         method = opts[:as_method]
+
 puts "###### ACL9 ##### method=#{method.to_s} ######"
 
         query_method_available = true
@@ -61,11 +63,14 @@ puts "###### ACL9 ##### method=#{method.to_s} ######"
                     else
                       Acl9::Dsl::Generators::FilterLambda.new(subject_method)
                     end
+
 puts "###### ACL9 ##### generator=#{generator.class.name} ######"
 
-        generator.acl_block!(&block)
+        # generator.acl_block!(&block)
 
         generator.install_on(self, opts)
+
+puts "###### ACL9 ##### install_on ######"
 
         if query_method_available && (query_method = opts.delete(:query_method))
           case query_method
@@ -82,7 +87,9 @@ puts "###### ACL9 ##### generator=#{generator.class.name} ######"
           end
 
           second_generator = Acl9::Dsl::Generators::BooleanMethod.new(subject_method, query_method)
+
 puts "###### ACL9 ##### second_generator=#{second_generator.inspect} ######"
+
           second_generator.acl_block!(&block)
           second_generator.install_on(self, opts)
         end
