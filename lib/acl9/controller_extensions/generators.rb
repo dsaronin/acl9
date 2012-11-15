@@ -97,14 +97,15 @@ module Acl9
         end
 
         def to_proc
-          code = 'puts ">>>>>>***** ctl lambda proc *****<<<<<<<"; true'
-#           code = <<-RUBY
-#             lambda do |controller|
+          code = <<-RUBY
+            lambda do |controller|
+   puts ">>>>>>***** ctl lambda proc *****<<<<<<<"
+   true
 #               unless #{allowance_expression}
 #                 #{_access_denied}
 #               end
-#             end
-#           RUBY
+            end
+          RUBY
 
           self.instance_eval(code, __FILE__, __LINE__)
         rescue SyntaxError
