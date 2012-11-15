@@ -100,10 +100,10 @@ module Acl9
           code = <<-RUBY
             lambda do |controller|
    puts ">>>>>>***** ctl lambda proc *****<<<<<<<"
-               unless #{allowance_expression}
-   puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
-                 #{_access_denied}
-               end
+#                unless #{allowance_expression}
+#    puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
+#                  #{_access_denied}
+#                end
    true
             end
           RUBY
