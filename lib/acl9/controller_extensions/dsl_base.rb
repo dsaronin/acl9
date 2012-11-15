@@ -11,7 +11,7 @@ module Acl9
       end
 
       def acl_block!(&acl_block)
-        self.instance_eval(&acl_block)   # correction? 'self.' needed?
+        instance_eval(&acl_block)   
       end
 
       def default_action
