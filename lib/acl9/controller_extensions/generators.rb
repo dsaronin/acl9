@@ -101,7 +101,7 @@ module Acl9
             (controller)  do
             #  lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
-   puts ">>>>>>***** ctlr: #{controller.class.name} *****<<<<<<<"
+   puts ">>>>>>***** ctlr: #{self.class.name} *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
 #                unless #{allowance_expression}
