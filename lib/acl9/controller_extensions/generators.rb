@@ -96,14 +96,15 @@ module Acl9
           controller_class.send(:before_filter, options, &self.to_proc)
         end
 
-        def to_proc
+        def to_proc(controller)
    puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
    puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
 
           code = <<-RUBY
-             lambda do |controller|
+             lambda do 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
 
 #                unless #{allowance_expression}
 #  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
