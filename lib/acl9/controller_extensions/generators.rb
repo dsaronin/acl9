@@ -98,6 +98,8 @@ module Acl9
 
         def to_proc
    puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
+   puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
+
           code = <<-RUBY
              lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
