@@ -98,7 +98,8 @@ module Acl9
 
         def to_proc
           code = <<-RUBY
-            lambda do |controller|
+            (controller)  do
+            #  lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** ctlr: #{controller.class.name} *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
