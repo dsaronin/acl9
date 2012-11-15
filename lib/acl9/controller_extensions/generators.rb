@@ -97,10 +97,10 @@ module Acl9
         end
 
         def to_proc
+   puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
           code = <<-RUBY
              lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
-   puts ">>>>>>***** ctlr: #{self.class.name} *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
 #                unless #{allowance_expression}
