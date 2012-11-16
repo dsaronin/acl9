@@ -93,7 +93,27 @@ module Acl9
         def install_on(controller_class, options)
           super
 
-          controller_class.send(:before_filter, options,  &self.to_proc( controller_class ) )
+          code =  <<-RUBY1
+               unless #{allowance_expression}
+                  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
+                  #{_access_denied}
+               end
+          RUBY1
+   puts ">>>>>>***** expression: #{allowance_expression} *****<<<<<<<"
+
+          controller_class.send(
+             :before_filter, 
+             lambda do |controller| 
+   puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
+   puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
+                self.instance_eval(code, __FILE__, __LINE__) 
+                rescue SyntaxError
+                  raise FilterSyntaxError, code
+             end  # lambda
+          )
+
+          # controller_class.send(:before_filter, options,  &self.to_proc( controller_class ) )
 
         end
 
