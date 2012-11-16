@@ -100,8 +100,6 @@ module Acl9
                end
           RUBY1
 
-          self_binding = binding()   # remember our binding
-
    puts ">>>>>>***** expression: #{allowance_expression} *****<<<<<<<"
 
           controller_class.send(
@@ -110,7 +108,7 @@ module Acl9
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
-                self_binding.eval(code, __FILE__, __LINE__) 
+                eval(code, binding, __FILE__, __LINE__) 
              end  # lambda
           )
 
