@@ -93,19 +93,18 @@ module Acl9
         def install_on(controller_class, options)
           super
 
-          controller_class.send(:before_filter, options,  &self.to_proc)
+          controller_class.send(:before_filter, options,  &self.to_proc( controller_class ) )
 
         end
 
-        def to_proc
-   puts ">>>>>>***** head: #{ ( defined?(controller_class) ?  controller_class.class.name  :  '__undefined ctlr_class__' ) } *****<<<<<<<"
+        def to_proc( controller )
+   puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined param controller' ) } *****<<<<<<<"
    puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
  
           code = <<-RUBY
              lambda do 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
-   puts ">>>>>>***** lambda: #{ ( defined?(controller_class) ?  controller_class.class.name  :  '__undefined ctlr_class__' ) } *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
