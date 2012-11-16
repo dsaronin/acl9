@@ -167,7 +167,7 @@ module Acl9
         end
       end
 
-      protected
+      # protected
 
       def _auth_role_class
         self.class._auth_role_class_name.constantize
