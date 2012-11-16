@@ -103,12 +103,15 @@ module Acl9
    puts ">>>>>>***** expression: #{allowance_expression} *****<<<<<<<"
 
           controller_class.send(
-             :before_filter, 
+             :before_filter,
              lambda do |controller| 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
-                eval(code, binding, __FILE__, __LINE__) 
+                # eval(code, binding, __FILE__, __LINE__) 
+                unless ((!controller.send(:current_user).nil? && controller.send(:current_user).has_role?('admin', nil)))
+                  raise Acl9::AccessDenied
+                end
              end  # lambda
           )
 
