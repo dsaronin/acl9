@@ -124,7 +124,7 @@ module Acl9
         end
       end
 
-      private
+    #  private
 
       def role_selecting_lambda(object)
         case object
