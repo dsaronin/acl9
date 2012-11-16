@@ -107,16 +107,16 @@ module Acl9
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
-
-                unless #{allowance_expression}
-  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
-                  #{_access_denied}
-                end
    true
+
+#                 unless #{allowance_expression}
+#   puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
+#                   #{_access_denied}
+#                 end
             end
           RUBY
 
-          self.instance_eval(code, __FILE__, __LINE__)
+          instance_eval(code, __FILE__, __LINE__)
         rescue SyntaxError
           raise FilterSyntaxError, code
         end
