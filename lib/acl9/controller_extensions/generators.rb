@@ -96,7 +96,7 @@ module Acl9
           controller_class.send(:before_filter, options, &self.to_proc)
         end
 
-        def to_proc(controller)
+        def to_proc
    puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
    puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
 
