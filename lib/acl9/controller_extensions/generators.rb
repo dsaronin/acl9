@@ -108,13 +108,13 @@ module Acl9
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
                 self.instance_eval(code, __FILE__, __LINE__) 
-                rescue SyntaxError
-                  raise FilterSyntaxError, code
              end  # lambda
           )
 
           # controller_class.send(:before_filter, options,  &self.to_proc( controller_class ) )
 
+          rescue SyntaxError
+            raise FilterSyntaxError, code
         end
 
         def to_proc( controller )
