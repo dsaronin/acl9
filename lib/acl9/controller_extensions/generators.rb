@@ -108,10 +108,10 @@ module Acl9
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
-#                unless #{allowance_expression}
-#  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
-#                  #{_access_denied}
-#                end
+                unless #{allowance_expression}
+  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
+                  #{_access_denied}
+                end
    true
             end
           RUBY
