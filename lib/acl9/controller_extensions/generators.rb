@@ -109,8 +109,8 @@ module Acl9
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
                 # eval(code, binding, __FILE__, __LINE__) 
-   puts ">>>>>>***** unless1: (!controller.send(:current_user).nil?).to_s *****<<<<<<<"
-   puts ">>>>>>***** unless2: (controller.send(:current_user).has_role?('admin', nil)).to_s *****<<<<<<<"
+   puts ">>>>>>***** unless1: #{ (!controller.send(:current_user).nil?).to_s } *****<<<<<<<"
+   puts ">>>>>>***** unless2: #{ (controller.send(:current_user).has_role?('admin', nil)).to_s } *****<<<<<<<"
 #                 unless ((!controller.send(:current_user).nil? && controller.send(:current_user).has_role?('admin', nil)))
 #                   raise Acl9::AccessDenied
 #                 end
