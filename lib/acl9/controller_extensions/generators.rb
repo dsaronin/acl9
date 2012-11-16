@@ -97,7 +97,8 @@ module Acl9
              lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
-   puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
+   puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
+   # puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
 #                unless #{allowance_expression}
 #  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
