@@ -107,7 +107,7 @@ module Acl9
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
-                self.instance_eval(code, __FILE__, __LINE__) 
+                eval(code, __FILE__, __LINE__) 
              end  # lambda
           )
 
