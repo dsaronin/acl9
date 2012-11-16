@@ -105,8 +105,8 @@ module Acl9
              :before_filter, 
              lambda do |controller| 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
-   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
                 self.instance_eval(code, __FILE__, __LINE__) 
              end  # lambda
           )
