@@ -93,33 +93,21 @@ module Acl9
         def install_on(controller_class, options)
           super
 
-          controller_class.send(:before_filter,   # options,  &self.to_proc)
-             lambda do |controller|
-   puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
-   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
-   puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
-   # puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
-
-#                unless #{allowance_expression}
-#  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
-#                  #{_access_denied}
-#                end
-   true
-            end
-           
-          )
+          controller_class.send(:before_filter, options,  &self.to_proc)
 
         end
 
         def to_proc
-   puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
+   puts ">>>>>>***** head: #{ ( defined?(controller_class) ?  controller_class.class.name  :  '__undefined ctlr_class__' ) } *****<<<<<<<"
    puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
-
+ 
           code = <<-RUBY
              lambda do 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller_class) ?  controller_class.class.name  :  '__undefined ctlr_class__' ) } *****<<<<<<<"
+   puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
-   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
 
 #                unless #{allowance_expression}
 #  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
