@@ -98,13 +98,13 @@ module Acl9
         end
 
         def to_proc( controller )
-   puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined param controller' ) } *****<<<<<<<"
+   puts ">>>>>>***** head: #{ ( defined?(controller) ?  controller.name  :  '__undefined param controller' ) } *****<<<<<<<"
    puts ">>>>>>***** head: #{ self.class.name } *****<<<<<<<"
  
           code = <<-RUBY
              lambda do 
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
-   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.name  :  '__undefined ctlr__' ) } *****<<<<<<<"
    puts ">>>>>>***** self: #{ self.class.name } *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
 
