@@ -93,7 +93,21 @@ module Acl9
         def install_on(controller_class, options)
           super
 
-          controller_class.send(:before_filter, options, &self.to_proc)
+          controller_class.send(:before_filter, options,  #  &self.to_proc)
+             lambda do |controller|
+   puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
+   puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
+   puts ">>>>>>***** lambda: #{ ( defined?(controller) ?  controller.class.name  :  '__undefined__' ) } *****<<<<<<<"
+
+#                unless #{allowance_expression}
+#  puts ">>>>>>***** access denied lambda proc *****<<<<<<<"
+#                  #{_access_denied}
+#                end
+   true
+            end
+           
+          )
+
         end
 
         def to_proc
