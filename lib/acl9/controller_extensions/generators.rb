@@ -93,7 +93,7 @@ module Acl9
         def install_on(controller_class, options)
           super
 
-          controller_class.send(:before_filter, options,  #  &self.to_proc)
+          controller_class.send(:before_filter,   # options,  &self.to_proc)
              lambda do |controller|
    puts ">>>>>>***** ctlr lambda proc *****<<<<<<<"
    puts ">>>>>>***** #{allowance_expression} *****<<<<<<<"
